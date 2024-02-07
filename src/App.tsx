@@ -1,9 +1,34 @@
-import React from 'react';
+import SearchResultList from './components/Search/SearchResultList';
+import FavList from './components/Favorites/FavList';
+import ChosenMovieCard from './components/RandomSearch/ChosenMovieCard';
+import { useFavoritesList } from './hooks/useMovieList/useFavoritesList';
+import { useWatchList } from './hooks/useMovieList/useWatchList';
+import {
+  AppContainer,
+  ListsContainer,
+  ChosenMovieContainer,
+  Separator,
+} from './styles/components/appStyle';
 const App: React.FC = () => {
+  const { favoritesList, addToFavoritesList, removeFromFavoritesList } = useFavoritesList();
+  const { watchList, addToWatchList, removeFromWatchList } = useWatchList();
+
   return (
-    <div className="app" style={{ height: '100%', width: '100%' }}>
-      <h1>Movie App</h1>
-    </div>
+    <AppContainer>
+      <ListsContainer>
+        <SearchResultList addToFavoritesList={addToFavoritesList} favoritesList={favoritesList} />
+        <Separator />
+        <FavList
+          favorites={favoritesList}
+          removeFromFavoritesList={removeFromFavoritesList}
+          addToWatchList={addToWatchList}
+          removeFromWatchList={removeFromWatchList}
+        />
+      </ListsContainer>
+      <ChosenMovieContainer>
+        <ChosenMovieCard watchList={watchList} />
+      </ChosenMovieContainer>
+    </AppContainer>
   );
 };
 

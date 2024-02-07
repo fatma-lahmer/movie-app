@@ -1,34 +1,31 @@
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
-    html, body, #root {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-    }
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+html {
+  height: 100%;
+}
 
-    body {
-        line-height: 1;
-        font-family: ${({ theme }) => theme.fontFamily};
-        background: ${({ theme }) => theme.backgroundColor};
-        max-width: 100%;
-        margin: 0 auto;
-    }
+#root {
+  height: inherit;
+}
 
-    *,
-    *:before,
-    *:after {
-        box-sizing: border-box;
-    }
-
-    a, li {
-        text-decoration: none;
-        color: inherit;
-    }
-    h1 {
-        margin: 0;
-        text-align: center;
-        padding: 1rem;
-    }
-
+body {
+  box-sizing: border-box;
+  margin: 0 auto;
+  font-weight: 300;
+  line-height: 1.2;
+  color: ${({ theme }) => theme.secondaryColor};
+  padding: 1rem;
+  height: 100%;
+  font-family: ${({ theme }) => theme.fontFamily};
+  font-size:${({ theme }) => theme.fontSize} ;
+  background: ${({ theme }) => theme.backgroundColor};
+}
 `;

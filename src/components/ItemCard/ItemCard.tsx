@@ -1,6 +1,6 @@
 import React from 'react';
 import { Movie } from '../../types/movie';
-import { formatRuntime } from '../../utils/fortmaTime';
+import { formatRuntime } from '../../utils/formatTime';
 import {
   ItemCardContainer,
   ContentContainer,

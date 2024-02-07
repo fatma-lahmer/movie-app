@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import ItemCard from './../ItemCard/ItemCard';
 import { Movie } from '../../types/movie';
+import { StyledCheckbox } from '../../styles/components/favCardStyle';
 
 interface FavCardProps {
   movie: Movie;
   onAddToWatchList: () => void;
   onRemoveFromFavoritesList: () => void;
   onRemoveFromWatchList: () => void;
+  isWachList: boolean;
 }
 
 const FavCard: React.FC<FavCardProps> = ({
@@ -14,16 +16,15 @@ const FavCard: React.FC<FavCardProps> = ({
   onAddToWatchList,
   onRemoveFromFavoritesList,
   onRemoveFromWatchList,
+  isWachList,
 }) => {
-  const [isChecked, setIsChecked] = useState(false);
+  const [isChecked, setIsChecked] = useState(isWachList);
   const onToggleWatchList = () => {
-    const isMovieInWatchList = isChecked;
-
-    if (isMovieInWatchList) {
-      setIsChecked(false);
+    if (isChecked) {
+      setIsChecked(!isChecked);
       onRemoveFromWatchList();
     } else {
-      setIsChecked(true);
+      setIsChecked(!isChecked);
       onAddToWatchList();
     }
   };
@@ -32,11 +33,13 @@ const FavCard: React.FC<FavCardProps> = ({
       movie={movie}
       actionButton={
         <>
-          {' '}
-          <div>
-            <label htmlFor="fav">Add to watch list</label>
-            <input name="fav" type="checkbox" onChange={onToggleWatchList} checked={isChecked} />
-          </div>
+          <StyledCheckbox
+            name="fav"
+            type="checkbox"
+            onChange={onToggleWatchList}
+            checked={isChecked}
+          />
+
           <button onClick={onRemoveFromFavoritesList}>Supprimer de ma liste</button>
         </>
       }

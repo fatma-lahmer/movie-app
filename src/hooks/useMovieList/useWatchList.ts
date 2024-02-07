@@ -1,7 +1,7 @@
 import useMovieList from './useMovieList';
 
 export const useWatchList = () => {
-  const { movieList, addToMovieList, removeFromMovieList } = useMovieList();
+  const { movieList, addToMovieList, removeFromMovieList } = useMovieList('WatchList');
 
   return {
     watchList: movieList,

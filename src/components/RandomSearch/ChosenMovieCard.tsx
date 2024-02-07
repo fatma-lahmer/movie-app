@@ -28,6 +28,7 @@ const ChosenMovieCard: React.FC<ChosenMovieCardProps> = ({ watchList }) => {
   ) : (
     <ItemCard
       movie={randomMovie}
+      showDescription={true}
       actionButton={
         <button onClick={handleChooseRandom} disabled={!watchList.length}>
           Je vais regarder quoi ce soir ?

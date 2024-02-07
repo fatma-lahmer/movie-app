@@ -4,7 +4,6 @@ export const theme = {
   secondaryColor: '#2A5067',
   secondaryColorLigther: '#E5F0F7',
   backgroundColor: '#F9F9FB',
-  textBtn: '#fff',
   fontSize: '12px',
   headerSize: '16px',
   fontFamily: 'Lato, sans-serif',

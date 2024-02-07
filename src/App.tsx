@@ -23,6 +23,7 @@ const App: React.FC = () => {
           removeFromFavoritesList={removeFromFavoritesList}
           addToWatchList={addToWatchList}
           removeFromWatchList={removeFromWatchList}
+          watchList={watchList}
         />
       </ListsContainer>
       <ChosenMovieContainer>

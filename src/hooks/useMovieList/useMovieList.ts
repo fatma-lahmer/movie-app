@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Movie } from '../../types/movie';
 
 interface MovieListHook {
@@ -7,17 +7,31 @@ interface MovieListHook {
   removeFromMovieList: (selectedMovie: Movie) => void;
 }
 
-const useMovieList = (): MovieListHook => {
+const useMovieList = (nameList: string): MovieListHook => {
+  const localStorageKey = nameList;
   const [movieList, setMovieList] = useState<Movie[]>([]);
 
-  const addToMovieList = (newMovie: Movie) => {
-    if (!movieList.some((movie) => movie.id === newMovie.id)) {
-      setMovieList((prevMovieList) => [...prevMovieList, newMovie]);
+  useEffect(() => {
+    const storedMovieList = localStorage.getItem(localStorageKey);
+    if (storedMovieList) {
+      setMovieList(JSON.parse(storedMovieList));
     }
+  }, []);
+
+  const addToMovieList = (newMovie: Movie) => {
+    setMovieList((prevMovieList) => {
+      const updatedList = [...prevMovieList, newMovie];
+      localStorage.setItem(localStorageKey, JSON.stringify(updatedList));
+      return updatedList;
+    });
   };
 
   const removeFromMovieList = (selectedMovie: Movie) => {
-    setMovieList((prevMovieList) => prevMovieList.filter((el) => el.id !== selectedMovie.id));
+    setMovieList((prevMovieList) => {
+      const updatedList = prevMovieList.filter((el) => el.id !== selectedMovie.id);
+      localStorage.setItem(localStorageKey, JSON.stringify(updatedList));
+      return updatedList;
+    });
   };
 
   return {

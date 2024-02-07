@@ -47,7 +47,7 @@ const ActionButton = styled.div`
   button {
     padding: 0.5rem;
     background-color: ${({ theme }) => theme.primaryColor};
-    color: ${({ theme }) => theme.textBtn};
+    color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;

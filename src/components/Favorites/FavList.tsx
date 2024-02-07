@@ -8,6 +8,7 @@ interface FavListProps {
   addToWatchList: (movie: Movie) => void;
   removeFromFavoritesList: (movie: Movie) => void;
   removeFromWatchList: (movie: Movie) => void;
+  watchList: Movie[];
 }
 
 const FavList: React.FC<FavListProps> = ({
@@ -15,6 +16,7 @@ const FavList: React.FC<FavListProps> = ({
   addToWatchList,
   removeFromFavoritesList,
   removeFromWatchList,
+  watchList,
 }) => {
   return (
     <ListContainer>
@@ -26,6 +28,7 @@ const FavList: React.FC<FavListProps> = ({
           onAddToWatchList={() => addToWatchList(movie)}
           onRemoveFromFavoritesList={() => removeFromFavoritesList(movie)}
           onRemoveFromWatchList={() => removeFromWatchList(movie)}
+          isWachList={watchList.some((show) => show.id === movie.id)}
         />
       ))}
     </ListContainer>

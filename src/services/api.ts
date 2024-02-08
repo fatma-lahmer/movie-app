@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Movie, ResponseApiShowsEntity, ResponseApiSearchEntity } from '../types/movie';
 
-const API_BASE_URL = 'http://api.tvmaze.com';
+const API_BASE_URL = 'https://api.tvmaze.com';
 
 export const fetchMovies = async (searchTerm = ''): Promise<Movie[]> => {
   const url = searchTerm ? `${API_BASE_URL}/search/shows?q=${searchTerm}` : `${API_BASE_URL}/shows`;

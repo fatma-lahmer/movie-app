@@ -10,6 +10,7 @@ const StyledCheckbox = styled.input`
   margin-right: 8px;
   position: relative;
   text-align: center;
+  transform: translateY(-30%);
   &:checked {
     border-color: ${({ theme }) => theme.primaryColor};
     background-color: ${({ theme }) => theme.primaryColor};

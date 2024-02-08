@@ -26,6 +26,7 @@ const App: React.FC = () => {
           watchList={watchList}
         />
       </ListsContainer>
+
       <ChosenMovieContainer>
         <ChosenMovieCard watchList={watchList} />
       </ChosenMovieContainer>

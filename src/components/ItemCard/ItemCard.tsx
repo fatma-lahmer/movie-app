@@ -26,10 +26,10 @@ const ItemCard: React.FC<ItemCardProps> = ({
 }) => {
   const formattedRuntime = formatRuntime(movie?.averageRuntime);
   return (
-    <ItemCardContainer>
+    <ItemCardContainer isChosenMovieCard={showDescription} isMovie={movie ? true : false}>
       {movie && (
-        <ContentContainer>
-          <ImageContainer image={movie.image}></ImageContainer>
+        <ContentContainer isChosenMovieCard={showDescription}>
+          <ImageContainer image={movie.image} isChosenMovieCard={showDescription}></ImageContainer>
           <InfoContainer>
             <li style={{ ...titleStyle }}>{movie.title}</li>
             <li>{formattedRuntime}</li>

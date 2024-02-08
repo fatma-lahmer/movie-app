@@ -20,7 +20,7 @@ body {
   box-sizing: border-box;
   margin: 0 auto;
   font-weight: 300;
-  line-height: 1.2;
+  line-height: 1.1;
   color: ${({ theme }) => theme.secondaryColor};
   padding: 1rem;
   height: 100%;

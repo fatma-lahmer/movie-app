@@ -9,6 +9,7 @@ import {
   ActionContainer,
   Description,
   ActionButton,
+  Title,
 } from '../../styles/components/itemCardStyle';
 
 interface ItemCardProps {
@@ -18,12 +19,7 @@ interface ItemCardProps {
   titleStyle?: React.CSSProperties;
 }
 
-const ItemCard: React.FC<ItemCardProps> = ({
-  movie,
-  actionButton,
-  showDescription,
-  titleStyle,
-}) => {
+const ItemCard: React.FC<ItemCardProps> = ({ movie, actionButton, showDescription }) => {
   const formattedRuntime = formatRuntime(movie?.averageRuntime);
   return (
     <ItemCardContainer isChosenMovieCard={showDescription} isMovie={movie ? true : false}>
@@ -31,7 +27,7 @@ const ItemCard: React.FC<ItemCardProps> = ({
         <ContentContainer isChosenMovieCard={showDescription}>
           <ImageContainer image={movie.image} isChosenMovieCard={showDescription}></ImageContainer>
           <InfoContainer>
-            <li style={{ ...titleStyle }}>{movie.title}</li>
+            <Title isChosenMovieCard={showDescription}>{movie.title}</Title>
             <li>{formattedRuntime}</li>
             <li>{movie.rating}</li>
             <li>{movie.year}</li>

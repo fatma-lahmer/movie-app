@@ -59,6 +59,10 @@ const Description = styled.li`
   width: 100%;
   padding: 0.5rem 0;
 `;
+const Title = styled.li<{ isChosenMovieCard: boolean | undefined }>`
+  font-size: ${(props) =>
+    props.isChosenMovieCard ? props.theme.headerSize : props.theme.fontSize};
+`;
 
 const ActionContainer = styled.div`
   height: 100%;
@@ -103,4 +107,5 @@ export {
   Description,
   ActionContainer,
   ActionButton,
+  Title,
 };

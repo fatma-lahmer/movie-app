@@ -40,7 +40,9 @@ const ItemCard: React.FC<ItemCardProps> = ({
         </ContentContainer>
       )}
       <ActionContainer>
-        <ActionButton>{actionButton}</ActionButton>
+        <ActionButton isChosenMovieCard={showDescription} isMovie={movie ? true : false}>
+          {actionButton}
+        </ActionButton>
       </ActionContainer>
     </ItemCardContainer>
   );

@@ -1,14 +1,22 @@
 import styled from 'styled-components';
 
+const getJustifyContentForContainter = (props: {
+  isChosenMovieCard?: boolean;
+  isMovie: boolean;
+}) => {
+  if (!props.isChosenMovieCard) return 'space-between';
+  if (props.isChosenMovieCard && props.isMovie) return 'flex-end';
+  return 'center';
+};
+
 const ItemCardContainer = styled.div<{ isChosenMovieCard: boolean | undefined; isMovie: boolean }>`
   display: flex;
   width: 100%;
   max-height: 180px;
   border-bottom: 1px solid;
-  margin-bottom: 1rem;
   overflow: hidden;
   padding: 0.5rem;
-  justify-content: ${(props) => (props.isChosenMovieCard && props.isMovie ? 'flex-end' : 'center')};
+  justify-content: ${(props) => getJustifyContentForContainter(props)};
   align-items: center;
   flex-direction: ${(props) => (props.isChosenMovieCard ? 'row-reverse' : 'row')};
   @media (max-width: 600px) {
@@ -22,11 +30,16 @@ const ContentContainer = styled.div<{ isChosenMovieCard: boolean | undefined }>`
   height: 100%;
   justify-content: ${(props) => (props.isChosenMovieCard ? 'flex-end' : 'flex-center')};
   position: relative;
+  @media (max-width: 600px) {
+    height: 80%;
+    justify-content: ${(props) => (props.isChosenMovieCard ? 'flex-start' : 'flex-center')};
+    margin-top: ${(props) => (props.isChosenMovieCard ? '7px' : '0')};
+  }
 `;
 
 const ImageContainer = styled.div<{ image: string; isChosenMovieCard: boolean | undefined }>`
   width: 30%;
-  max-width: ${(props) => (props.isChosenMovieCard ? '81px' : '61px')};
+  max-width: ${(props) => (props.isChosenMovieCard ? '108px' : '61px')};
   background-image: url(${(props) => props.image});
   background-size: contain;
   background-position: center;
@@ -34,16 +47,17 @@ const ImageContainer = styled.div<{ image: string; isChosenMovieCard: boolean | 
 `;
 
 const InfoContainer = styled.ul`
+  display: flex;
+  flex-direction: column;
   width: 70%;
   padding: 1rem;
   list-style: none;
+  overflow: auto;
 `;
 
-const Description = styled.div`
+const Description = styled.li`
   width: 100%;
-  @media (max-width: 600px) {
-    width: 110%;
-  }
+  padding: 0.5rem 0;
 `;
 
 const ActionContainer = styled.div`
@@ -53,7 +67,7 @@ const ActionContainer = styled.div`
   align-items: center;
 `;
 
-const ActionButton = styled.div`
+const ActionButton = styled.div<{ isChosenMovieCard: boolean | undefined; isMovie: boolean }>`
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -69,9 +83,14 @@ const ActionButton = styled.div`
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    transform: ${(props) =>
+      props.isChosenMovieCard && props.isMovie ? 'translateX(100%)' : 'translateX(0)'};
     &:disabled {
       filter: grayscale(100%);
       cursor: not-allowed;
+    }
+    @media (max-width: 600px) {
+      transform: translateX(0);
     }
   }
 `;
